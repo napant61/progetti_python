@@ -1,10 +1,9 @@
 """
 Nome Script: calcolatrice_math_tkinter.py
-Descrizione: Questo script crea una calcolatrice che fa tre operazioni matematiche sfruttando il modulo math, ricorrendo alla libreria
-tkinter
+Descrizione: Questo script crea una calcolatrice che fa due operazioni matematiche (radice quadrata e logaritmo naturale) sfruttando il modulo math e ricorrendo alla libreria tkinter
 Autore: Antonio Napolitano
 Versione: 1.0
-Data: 14/03/2025
+Data: 25/03/2025
 Copyright: © Antonio Napolitano 2025
 Licenza: MIT
 """
