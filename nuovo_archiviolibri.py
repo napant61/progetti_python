@@ -36,7 +36,7 @@ class ArchivioLibri:
                 messagebox.showerror("Errore", f"Errore durante il caricamento del file CSV: {e}")
             self.aggiorna_lista_libri(self.libri)
         else:
-            messagebox.showinfo("Info", "File CSV non trovato. Inizializzando un archivio vuoto.")
+            messagebox.showinfo("Info", "File CSV non trovato. Creazione di un archivio vuoto.")
 
     def salva_dati_csv(self, nome_file):
         try:
@@ -177,16 +177,33 @@ class ArchivioLibri:
             messagebox.showerror("Errore", "Dati libro non validi.")
 
     def modifica_libro(self):
+        
         selected_item = self.tree.selection()
         if selected_item:
             item = self.tree.item(selected_item)
             titolo, autore, prezzo, disponibilita, copertina = item["values"]
-
-            nuovo_titolo = simpledialog.askstring("Modifica Libro", "Nuovo Titolo:", initialvalue=titolo)
-            nuovo_autore = simpledialog.askstring("Modifica Libro", "Nuovo Autore:", initialvalue=autore)
-            nuovo_prezzo = simpledialog.askfloat("Modifica Libro", "Nuovo Prezzo:", initialvalue=float(prezzo))
-            nuova_disponibilita = simpledialog.askstring("Modifica Libro", "Nuova Disponibilità (Sì/No):", initialvalue=disponibilita)
-            nuova_copertina = filedialog.askopenfilename(title="Seleziona immagine copertina", filetypes=(("Immagini JPG", "*.jpg"), ("Immagini PNG", "*.png"), ("Tutti i file", "*.*")))
+            self.root.attributes('-topmost', True) # Mantiene la finestra principale in primo piano
+            nuovo_titolo = simpledialog.askstring("Modifica Libro", "Nuovo Titolo:", initialvalue=titolo, parent=self.root)
+            if nuovo_titolo is None:
+                self.root.attributes('-topmost', False)
+                return
+            nuovo_autore = simpledialog.askstring("Modifica Libro", "Nuovo Autore:", initialvalue=autore, parent=self.root)
+            if nuovo_autore is None:
+                self.root.attributes('-topmost', False)
+                return
+            nuovo_prezzo = simpledialog.askfloat("Modifica Libro", "Nuovo Prezzo:", initialvalue=float(prezzo), parent=self.root)
+            if nuovo_prezzo is None:
+                self.root.attributes('-topmost', False)
+                return
+            nuova_disponibilita = simpledialog.askstring("Modifica Libro", "Nuova Disponibilità (Sì/No):", initialvalue=disponibilita, parent=self.root)
+            if nuova_disponibilita is None:
+                self.root.attributes('-topmost', False)
+                return
+            nuova_copertina = filedialog.askopenfilename(title="Seleziona immagine copertina", filetypes=(("Immagini JPG", "*.jpg"), ("Immagini PNG", "*.png"), ("Tutti i file", "*.*")), parent=self.root)
+            if nuova_copertina is None:
+                self.root.attributes('-topmost', False)
+                return
+            self.root.attributes('-topmost', False) # Ripristina la finestra principale
 
             if nuovo_titolo and nuovo_autore and nuovo_prezzo is not None:
                 for libro in self.libri:
