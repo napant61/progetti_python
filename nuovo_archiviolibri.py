@@ -3,7 +3,7 @@ Nome Script: nuovo_archiviolibri.py
 Descrizione: Questo script crea un archivio di libri con funzionalità di filtro, aggiunta, modifica ed eliminazione dei libri. 
 Utilizza tkinter per l'interfaccia grafica e PIL per la gestione delle immagini. Si appoggia su un database CSV per il salvataggio dei dati.
 Autore: Antonio Napolitano
-Versione: 1.1
+Versione: 1.2
 Data: 02/04/2025
 Copyright: © Antonio Napolitano 2025
 Licenza: MIT
